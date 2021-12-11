@@ -1,0 +1,11 @@
+sort1 uses:BUBBLE SORT
+
+How do you know?: Because it is faster than sort3 ordering already ordered long series of numbers, which is the case when bubble sort outperformance selection sort because it stops when comparing.
+
+sort2 uses: MERGE SORT
+
+How do you know?: Because it is way fast than the others in long random series of numbers, which is the case where the recursion of this algorithm really shines.
+
+sort3 uses: SELECTION SORT
+
+How do you know?: Because the logic of the answers above.
