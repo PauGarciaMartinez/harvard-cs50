@@ -30,6 +30,7 @@ bool vote(int rank, string name, int ranks[]);
 void record_preferences(int ranks[]);
 void add_pairs(void);
 void sort_pairs(void);
+bool cycle(int, int);
 void lock_pairs(void);
 void print_winner(void);
 
@@ -167,10 +168,41 @@ void sort_pairs(void)
     return;
 }
 
+// Test for cycle by checking arrow coming into each candidate
+bool cycle(int end, int cycle_start)
+{
+    // Return true if there is a cycle created (Recursion base case)
+    if (end == cycle_start)
+    {
+        return true;
+    }
+
+    // Loop through candidates (Recursive case)
+    for (int i = 0; i < candidate_count; i++)
+    {
+        if (locked[end][i])
+        {
+            if (cycle(i, cycle_start))
+            {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
 // Lock pairs into the candidate graph in order, without creating cycles
 void lock_pairs(void)
 {
-    // TODO
+    // Loop through pairs
+    for (int i = 0; i < pair_count; i++)
+    {
+        // If cycle function returns false, lock the pair
+        if (!cycle(pairs[i].loser, pairs[i].winner))
+        {
+            locked[pairs[i].winner][pairs[i].loser] = true;
+        }
+    }
     return;
 }
 
